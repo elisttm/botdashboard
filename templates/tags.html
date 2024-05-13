@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} - tags{% endblock %}
+{% block og_title %}list of tags{% endblock %}
+{% block og_desc %}{{ header }}{% endblock %}
+
+{% block content %}
+	<h1>{{ header }}</h1>
+	<div class="tags">
+		{% for tag in tags_list %}<br><div class="tag" id="{{ tag['_id'] }}"><h2>{{ tag['_id'] }}</h2>
+			<b>{{ tagf.timeform(tag['date']) }} UDT{% if not search %}<br>owner: {{ tag['owner'] }}{% endif %}</b>
+			<p>{{ tagf.cparse(tag['content']) }}</p>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}

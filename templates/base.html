@@ -1,0 +1,29 @@
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<meta property="google" content="notranslate">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="" type='image/png' />
+	<link rel="stylesheet" href="/static/style.css" type="text/css" />
+	{% block head %}{% endblock %}
+	<title>eli bot{% block title %}{% endblock %}</title>
+	<meta property="og:type" content="website"/>
+	<meta property="og:site_name" content="eli bot"/>
+	<meta property="og:title" content="{% block og_title %}{% endblock %}"/>
+	<meta property="og:description" content="{% block og_desc %}{% endblock %}"/>
+	<meta property="og:image" content=""/>
+<body>
+<div class="topnav" id="topnavContent">
+	{% if user %}<span class="hbtn logo"><img src="{{ user.avatar_url }}" width="48px" height="48px"/>{{ user.name }} <a style="font-size:12px" href="/logout">[logout]</a></span>
+	{% else %}<a style="margin:15px 15px 15px 0px" class="hbtn logo" href="/login">login</a>{% endif %}
+	<div class="topnav-right">
+		<a class="hbtn" href="/commands">commands</a>
+		<a class="hbtn" href="/tags">tags</a>
+		{% if user %}<a class="hbtn" href="/servers">configuration</a>{% endif %}
+	</div>
+</div>
+	{% block content %}{% endblock %}
+	{% with messages = get_flashed_messages() %}{% if messages %}{% for message in messages %}{{ message }}<br>{% endfor %}{% endif %}{% endwith %}
+</body>
+</html>

@@ -1,0 +1,41 @@
+body {background-color: #111; color: #fff; font-family: Monospace; padding: 0 20vw; word-break: break-word;}
+
+a {color: #fff;}
+
+h1 {margin: 0px 0px 14px 0px}
+
+.topnav {padding: 0; margin-bottom: 16px; overflow: hidden; font-family:Monospace}
+.topnav img {padding:0px; vertical-align: middle; text-decoration: none; height: 40px; width: 40px; margin: 4px 8px 4px 0px;}
+.topnav .hbtn {float: left; display: block;}
+.topnav-right {float: right}
+.topnav-right .hbtn {margin:15px 8px}
+
+.icon {height: 32px; width: 32px; vertical-align: middle}
+.icon64 {height: 64px; width: 64px; vertical-align: middle}
+
+.commands {margin: 16px 0}
+.commands h2, .commands h3 {margin: 0 0 4px 0}
+.commands ul {margin: 0}
+.commands li {padding-bottom: 5px}
+.commands b {font-size: 14px}
+
+.tag {margin: 16px 0; text-align: left;}
+.tag h2 {margin: 0 0 8px 0}
+.tag p {margin: 8px 0 0 0}
+
+.server {width: 350px; height: 32px; display: inline-block; overflow: hidden; position: relative; text-align: left;}
+
+.cgroup {margin: 8px 0px 8px 0px; clear: both; padding: 0; display: flex; vertical-align: top; width: shrink-to-fit; text-align: left}
+.cgroup legend {padding: 0px 8px; font-weight: bold; font-size: 16px}
+.csetting {margin: 2px 6px 2px 6px; display: inline-block; width: auto; vertical-align: top}
+.clist td {padding: 0 2px 0 2px;}
+
+.column {box-sizing: border-box; float: left; width: 50%; padding:1%;}
+.row:after {box-sizing: border-box; content: ""; display: table; clear: both;}
+@media screen and (max-width: 1000px) {.column {width: 100%;}}
+
+@media screen and (max-width: 600px) {
+	body {padding: 0 2vw}
+	.topnav-right {float: left}
+	.topnav-right a {display: block}
+}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %} - settings{% endblock %}
+
+{% block content %}
+	<h1>"{{ guild.name }}" configuration</h1>
+
+	<form action="" method="post">
+	{% for group in conf.key_groups %}<span style="text-align:center"><div class="cgroup"><fieldset><legend>{{ group }}</legend>
+		{% for key in conf.key_groups[group] %}<div class="csetting"><label for="{{ key }}">{% if 'namealt' in conf.keys[key] %}{{ conf.keys[key]['namealt'] }}{% else %}{{ conf.keys[key]['name'] }}{% endif %}</label><br>
+			{% if conf.keys[key]['type'] == 'text' or conf.keys[key]['type'] == 'emoji' %}
+				{% if conf.keys[key]['c']['type'] == 'large' %}<textarea rows="3" cols="20" name="{{ key }}">{{ guild_data[key] }}</textarea>
+				{% else %}<input type="text" placeholder="{{ conf.keys[key]['default'] }}" name="{{ key }}" value="{{ guild_data[key] }}" min="0" maxlength="{{ conf.keys[key]['c']['max'] }}" size="{{ conf.keys[key]['c']['size'] }}">
+				{% endif %}
+			{% elif conf.keys[key]['type'] == 'number' %}<input type="number" name="{{ key }}" value="{{ guild_data[key] }}" min="{{ conf.keys[key]['c']['min'] }}" max="{{ conf.keys[key]['c']['max'] }}">
+			{% elif conf.keys[key]['type'] == 'toggle' %}<select name="{{ key }}">
+					<option value="enabled"{% if guild_data[key] == True %} selected{% endif %}>enabled</option>
+					<option value="disabled"{% if guild_data[key] == False %} selected{% endif %}>disabled</option>
+				</select>
+			{% elif conf.keys[key]['type'] == 'channel' %}<select name="{{ key }}">
+					<option value=""{% if key not in guild_data %} selected{% endif %}>none</option>
+					{% for channel in guild.channels %}<option value="{{ channel.id }}"{% if guild_data[key] == channel.id|int %} selected{% endif %}>#{{ channel.name }}</option>
+				{% endfor %}</select>
+			{% elif conf.keys[key]['type'] == 'role' %}<select name="{{ key }}">
+					<option value=""{% if key not in guild_data %} selected{% endif %}>none</option>
+					{% for role in guild.roles %}<option value="{{ role.id }}"{% if guild_data[key] == role.id|int %} selected{% endif %}>@{{ role.name }}</option>
+				{% endfor %}</select>
+			{% elif conf.keys[key]['type'] == 'list' %}<table class="clist">
+				{% for value in conf.keys[key]['valid'] %}
+					<td><input type="checkbox" name="{{ key }}" value="{{ value }}"{% if key in guild_data and value in guild_data[key] %} checked{% endif %}> {{ value }} </td>{% if loop.index % 3 == 0 %}</tr><tr>{% endif %}{% endfor %}
+				</tr></table>
+			{% endif %}
+	</div>{% endfor %}</fieldset></div></span>{% endfor %}
+		<br><input type="submit" name="submit" value="submit"> <input type="submit" name="submit" value="reset">
+	</form>
+{% endblock %}

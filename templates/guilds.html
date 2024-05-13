@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} - your servers{% endblock %}
+
+{% block content %}
+	<h1>list of servers</h1>
+	here is a list of servers eli bot is in that you can configure<br>
+	if you dont see a server here, either eli bot isn't in it or you lack the necessary permissions<br><br><br>
+		{% if guilds|length == 0 %}you are not an admin in any servers with eli bot!{% else %}
+		{% for guild in guilds %}
+			<div class="server">
+				<img class="icon" src="{{ guild.icon_url }}">
+				<a href="config/{{ guild['id'] }}">{{ guild.name }} </a>
+			</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+{% endblock %}

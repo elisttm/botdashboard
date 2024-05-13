@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} - commands{% endblock %}
+{% block og_title %}eli bot commands{% endblock %}
+{% block og_desc %}all of eli bot's silly commands{% endblock %}
+
+{% block content %}
+	<h1>list of commands</h1>
+
+	{% for ctg in cmds %}
+		<div class="commands"><h2>{{ ctg }}</h2>
+			<h3>{{ cmds[ctg][0] }}</h3><ul>{% for cmd in cmds[ctg][1] %}
+				<li><b>{{ cmds[ctg][1][cmd][0] }} </b>{% if cmds[ctg][1][cmd]|length == 3 and cmds[ctg][1][cmd][2] != None %} (aliases: {{ cmds[ctg][1][cmd][2]|join(', ') }}) {% endif %}{% if cmds[ctg][1][cmd]|length == 4 %}({{ cmds[ctg][1][cmd][3] }}) {% endif %}{{ md(cmds[ctg][1][cmd][1]) }}</li>{% endfor %}</ul>
+			</div>
+			{% endfor %}
+{% endblock %}
